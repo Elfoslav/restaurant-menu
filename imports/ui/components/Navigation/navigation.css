@@ -1,0 +1,19 @@
+nav {
+  background: #d2edf4;
+  background-image: linear-gradient(to bottom, #e1e5f0, #d0edf5 100%);
+  padding: 20px 15px 15px 15px;
+  text-align: center;
+}
+
+nav .nav {
+  width: 700px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav div a.active {
+  color: red;
+}

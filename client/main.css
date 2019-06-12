@@ -1,0 +1,88 @@
+/** === Layout === */
+body {
+  font-family: sans-serif;
+  background-color: #315481;
+  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+  background-attachment: fixed;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: 0;
+  margin: 0;
+
+  font-size: 14px;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  min-height: 100%;
+  background: white;
+}
+
+.content {
+  padding: 15px;
+}
+
+header {
+  background: #d2edf4;
+  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
+  padding: 20px 15px 15px 15px;
+  position: relative;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0;
+}
+
+#login-buttons {
+  display: block;
+}
+
+/** === General === */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 5px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+}
+
+.btn {
+  text-decoration: none;
+  display: inline-block;
+  background: #ddd;
+  color: black;
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 3px;
+}
+
+.btn:hover {
+  background: #ccc;
+}
+
+.btn.btn-medium {
+  font-size: 0.9em;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+.float-right {
+  float: right;
+}
+
+.error {
+  color: red;
+}
