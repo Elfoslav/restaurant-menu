@@ -21,7 +21,7 @@ export default class FoodItemForm extends Component {
         imgUrl: this.props.data.imgUrl
       }
     }
-    console.log('init values: ', initValues);
+
     return (
       <Formik
         initialValues={initValues}

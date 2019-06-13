@@ -47,6 +47,10 @@ Meteor.methods({
       imgUrl: String,
     });
 
+    if (! this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
     FoodItems.update({ _id: data._id }, { $set: data });
   },
   'FoodItems.remove'(foodItemId) {
