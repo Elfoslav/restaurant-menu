@@ -7,7 +7,6 @@ import './FoodItemForm.css';
 export default class FoodItemForm extends Component {
   render() {
     let initValues = {
-      _id: '',
       name: '',
       price: 0,
       imgUrl: ''
