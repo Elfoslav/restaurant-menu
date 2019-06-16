@@ -5,6 +5,24 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import './FoodItemForm.css';
 
 export default class FoodItemForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onImgBlur = this.onImgBlur.bind(this);
+  }
+
+  onImgBlur(event, setFieldError) {
+    const img = new Image();
+    img.onload = () => {
+      this.props.onImgBlur(event);
+    }
+    img.onerror = (err) => {
+      console.log(err);
+      setFieldError('imgUrl', ' * Bad image url - not working');
+    }
+    img.src = event.target.value;
+  }
+
   render() {
     let initValues = {
       name: '',
@@ -49,8 +67,8 @@ export default class FoodItemForm extends Component {
           }, 2000);
         }}
       >
-        {({ isSubmitting }) => (
-          <Form>
+        {({ isSubmitting, handleBlur, setFieldValue, setFieldError, setFieldTouched }) => (
+          <Form className="food-item-form">
             <Field type="hidden" name="_id" />
             <p>
               <label>Food name:</label>
@@ -59,6 +77,7 @@ export default class FoodItemForm extends Component {
                 name="name"
                 placeholder="Food name"
               />
+              <br />
               <ErrorMessage name="name" className="error" component="span" />
             </p>
 
@@ -70,6 +89,7 @@ export default class FoodItemForm extends Component {
                 name="price"
                 placeholder="Food price"
               />
+              <br />
               <ErrorMessage name="price" className="error" component="span" />
             </p>
 
@@ -79,7 +99,16 @@ export default class FoodItemForm extends Component {
                 type="text"
                 name="imgUrl"
                 placeholder="Food image URL"
+                onBlur={e => {
+                  e.persist();
+                  console.log('onBlur: ', e);
+                  this.onImgBlur(e, setFieldError);
+                  //handleBlur(e);
+                  console.log('setting field value: ', e.target.value);
+                  setFieldTouched('imgUrl', true, false);
+                }}
               />
+              <br />
               <ErrorMessage name="imgUrl" className="error" component="span" />
             </p>
 

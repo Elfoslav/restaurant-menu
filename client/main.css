@@ -44,6 +44,19 @@ footer {
   display: block;
 }
 
+/** === Grid system */
+.row {
+  display: flex;
+}
+
+.row img {
+  max-width: 100%;
+}
+
+.col-50-percent {
+  flex: 50%;
+}
+
 /** === General === */
 label {
   display: block;
