@@ -21,7 +21,8 @@ Meteor.methods({
     check(data, {
       name: String,
       price: Number,
-      imgUrl: String
+      imgUrl: String,
+      description: String,
     });
 
     // Make sure the user is logged in before inserting a foodItem
@@ -35,6 +36,7 @@ Meteor.methods({
       name,
       price,
       imgUrl,
+      description,
       createdAt: new Date(),
       owner: this.userId
     });
@@ -45,6 +47,7 @@ Meteor.methods({
       name: String,
       price: Number,
       imgUrl: String,
+      description: String,
     });
 
     if (! this.userId) {

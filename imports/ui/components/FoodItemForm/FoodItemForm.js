@@ -27,7 +27,8 @@ export default class FoodItemForm extends Component {
     let initValues = {
       name: '',
       price: 0,
-      imgUrl: ''
+      imgUrl: '',
+      description: ''
     }
 
     if (this.props.data) {
@@ -35,7 +36,8 @@ export default class FoodItemForm extends Component {
         _id: this.props.data._id,
         name: this.props.data.name,
         price: this.props.data.price,
-        imgUrl: this.props.data.imgUrl
+        imgUrl: this.props.data.imgUrl,
+        description: this.props.data.description
       }
     }
 
@@ -110,6 +112,19 @@ export default class FoodItemForm extends Component {
               />
               <br />
               <ErrorMessage name="imgUrl" className="error" component="span" />
+            </p>
+
+            <p>
+              <label>Description</label>
+              <Field
+                component="textarea"
+                cols="50"
+                rows="5"
+                name="description"
+                placeholder="Description..."
+              />
+              <br />
+              <ErrorMessage name="description" className="error" component="span" />
             </p>
 
             <p>

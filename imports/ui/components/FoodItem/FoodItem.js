@@ -24,7 +24,7 @@ export default class FoodItem extends Component {
   }
 
   render() {
-    const { _id, name, price, imgUrl } = this.props.foodItem;
+    const { _id, name, price, imgUrl, description } = this.props.foodItem;
     const currentUser = Meteor.user();
     return (
       <div className="food-item">
@@ -32,6 +32,7 @@ export default class FoodItem extends Component {
          <div className="content">
             <h1><Link className="header" to={`/admin/food-item/${_id}/edit`}>{name}</Link></h1>
             <div className="price"> <h3> $ {price} </h3></div>
+            <div className="description">{description}</div>
         </div>
         {currentUser &&
           <div className="delete">
