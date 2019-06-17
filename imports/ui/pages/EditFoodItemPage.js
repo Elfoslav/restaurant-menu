@@ -1,41 +1,33 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 
-import FoodItemForm from '../components/FoodItemForm/FoodItemForm';
+import FoodItemFormContainer from '../components/FoodItemForm/FoodItemFormContainer';
 
 export default class EditFoodItemPage extends Component {
   constructor(props) {
     super(props);
-    console.log('constructor props: ', props);
 
     this.state = {
       item: {}
     }
 
-    // Without this 'this' will be undefined in handleSubmit method
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
-    // Simulate loading
-    setTimeout(() => {
-      Meteor.call('FoodItems.get', this.props.match.params._id, (err, item) => {
-        this.setState({ item });
-      });
-    }, 1000);
+    Meteor.call('FoodItems.get', this.props.match.params._id, (err, item) => {
+      this.setState({ item });
+    });
   }
 
-  handleSubmit(values, props) {
-    console.log('values: ', values);
-    console.log('this.props: ', this.props, props);
+  onSubmit(values, props) {
     Meteor.call('FoodItems.update', values, (err) => {
       if (err) {
         console.log(err);
         return alert(err.message);
       }
 
-      console.log('this.props inside Meteor.call', this.props);
       this.props.history.push("/");
     });
   }
@@ -44,9 +36,9 @@ export default class EditFoodItemPage extends Component {
     let hasItem = Object.keys(this.state.item).length !== 0;
     return (
       <div>
-        <header><h1>Edit food item</h1></header>
+        <header><h1><Link to="/" title="&laquo; Back">&laquo;</Link> Edit food item</h1></header>
         { hasItem ? (
-          <FoodItemForm onSubmit={this.handleSubmit} data={this.state.item} {...this.props} />
+          <FoodItemFormContainer onSubmit={this.onSubmit} data={this.state.item} {...this.props} />
         ) : (
           <div>Loading...</div>
         )}

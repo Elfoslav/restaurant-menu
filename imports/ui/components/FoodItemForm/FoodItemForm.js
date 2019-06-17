@@ -61,12 +61,8 @@ export default class FoodItemForm extends Component {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          // simulate longer response
-          console.log('values: ', values);
-          setTimeout(() => {
-            this.props.onSubmit(values, this.props);
-            setSubmitting(false);
-          }, 2000);
+          this.props.onSubmit(values, this.props);
+          setSubmitting(false);
         }}
       >
         {({ isSubmitting, handleBlur, setFieldValue, setFieldError, setFieldTouched }) => (
@@ -103,10 +99,8 @@ export default class FoodItemForm extends Component {
                 placeholder="Food image URL"
                 onBlur={e => {
                   e.persist();
-                  console.log('onBlur: ', e);
                   this.onImgBlur(e, setFieldError);
                   //handleBlur(e);
-                  console.log('setting field value: ', e.target.value);
                   setFieldTouched('imgUrl', true, false);
                 }}
               />
@@ -118,7 +112,6 @@ export default class FoodItemForm extends Component {
               <label>Description</label>
               <Field
                 component="textarea"
-                cols="50"
                 rows="5"
                 name="description"
                 placeholder="Description..."

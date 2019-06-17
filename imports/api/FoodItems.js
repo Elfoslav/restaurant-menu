@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { check } from 'meteor/check';
+import { check, Match } from 'meteor/check';
 
 export const FoodItems = new Mongo.Collection('foodItems');
 
@@ -22,7 +22,7 @@ Meteor.methods({
       name: String,
       price: Number,
       imgUrl: String,
-      description: String,
+      description: Match.Optional(String),
     });
 
     // Make sure the user is logged in before inserting a foodItem
@@ -30,7 +30,7 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
 
-    const { name, price, imgUrl } = data;
+    const { name, price, imgUrl, description } = data;
 
     FoodItems.insert({
       name,
@@ -47,7 +47,7 @@ Meteor.methods({
       name: String,
       price: Number,
       imgUrl: String,
-      description: String,
+      description: Match.Optional(String),
     });
 
     if (! this.userId) {

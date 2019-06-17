@@ -1,3 +1,5 @@
-.food-item-form input[type="text"], .food-item-form input[type="number"] {
+.food-item-form input[type="text"],
+.food-item-form input[type="number"],
+.food-item-form textarea {
   width: 90%;
 }
