@@ -11,7 +11,7 @@ function PrivateRoute({ component: Component, ...rest }) {
       {...rest}
       render={props =>
         isLoggedIn ? (
-          <DefaultLayout {...props} />
+          <DefaultLayout component={arguments[0].component} {...props} />
         ) : (
           <Redirect
             to={{
