@@ -7,8 +7,17 @@ export const FoodItems = new Mongo.Collection('foodItems');
 if (Meteor.isServer) {
   // This code only runs on the server
   // Only publish FoodItems that are public or belong to the current user
-  Meteor.publish('FoodItems', () => {
-    return FoodItems.find({ owner: this.userId });
+  Meteor.publish('FoodItems', ({ skip = 0, limit = 0 } = {}) => {
+    check(skip, Match.Optional(Number));
+    check(limit, Match.Optional(Number));
+    console.log('skip, limit: ', skip, limit);
+    return FoodItems.find(
+      { owner: this.userId },
+      {
+        sort: { createdAt: 1 },
+        skip,
+        limit
+      });
   });
 
   Meteor.publish('FoodItem', (_id) => {
@@ -70,5 +79,8 @@ Meteor.methods({
   'FoodItems.get'(foodItemId) {
     check(foodItemId, String);
     return FoodItems.findOne(foodItemId);
+  },
+  'FoodItems.getCount'() {
+    return FoodItems.find().count();
   }
 });
